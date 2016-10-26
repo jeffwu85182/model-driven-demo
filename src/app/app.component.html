@@ -5,49 +5,49 @@
       <h2>基本資料</h2>
       <div class="form-group">
         <label>請輸入名字</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="請輸入名字">
+        <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="請輸入名字">
       </div>
       <div class="form-group">
         <label>請輸入英文名</label>
-        <input type="text" class="form-control" id="nickName" name="nickName" placeholder="請輸入英文名">
+        <input type="text" class="form-control" id="nickName" formControlName="nickName" placeholder="請輸入英文名">
       </div>
       <div class="form-group">
         <label>請輸入Email</label>
-        <input type="email" class="form-control" id="email" name="email" placeholder="請輸入Email">
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="請輸入Email">
       </div>
       <div class="form-group">
         <label>請輸入電話</label>
-        <input type="text" class="form-control" id="phone" name="phone" placeholder="請輸入電話">
+        <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="請輸入電話">
       </div>
       <div class="form-group">
         <label>請輸入生日</label>
-        <input type="text" class="form-control" id="birthday" name="birthday" placeholder="yyyy/mm/dd">
+        <input type="text" class="form-control" id="birthday" formControlName="birthday" placeholder="yyyy/mm/dd">
       </div>
       <h3>請選擇興趣</h3>
-      <div class="form-group">
+      <div class="form-group" formGroupName="interest">
         <label>
-          <input type="checkbox" id="movie" name="movie" value="movie"> 電影
+          <input type="checkbox" id="movie" formControlName="movie" value="movie"> 電影
         </label>
         <label>
-          <input type="checkbox" id="music" name="music" value="music"> 音樂
+          <input type="checkbox" id="music" formControlName="music" value="music"> 音樂
         </label>
         <label>
-          <input type="checkbox" id="technology" name="technology" value="technology"> 技術
+          <input type="checkbox" id="technology" formControlName="technology" value="technology"> 技術
         </label>
         <label>
-          <input type="checkbox" id="sports" name="sports" value="sports"> 運動
+          <input type="checkbox" id="sports" formControlName="sports" value="sports"> 運動
         </label>
         <label>
-          <input type="checkbox" id="games" name="games" value="games"> 遊戲
+          <input type="checkbox" id="games" formControlName="games" value="games"> 遊戲
         </label>
       </div>
       <h3>性別</h3>
       <div class="form-group">
         <label>
-          <input type="radio" id="male" name="sex" value="male"> 漢子
+          <input type="radio" id="male" formControlName="sex" value="male"> 漢子
         </label>
         <label>
-          <input type="radio" id="female" name="sex" value="female"> 妹子
+          <input type="radio" id="female" formControlName="sex" value="female"> 妹子
         </label>
       </div>
     </div>
