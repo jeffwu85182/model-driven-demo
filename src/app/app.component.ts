@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,23 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  form = new FormGroup({
-      firstName: new FormControl(),
-      nickName: new FormControl(),
-      email: new FormControl(),
-      phone: new FormControl(),
-      birthday: new FormControl(),
-      interest: new FormGroup({
-        movie: new FormControl(),
-        music: new FormControl(),
-        technology: new FormControl(),
-        sports: new FormControl(),
-        games: new FormControl()
+  form;
+  constructor(private _fb: FormBuilder) {
+    this.form = this._fb.group({
+      firstName: '',
+      nickName: '',
+      email: '',
+      phone: '',
+      birthday: '',
+      interest: this._fb.group({
+        movie: '',
+        music: '',
+        technology: '',
+        sports: '',
+        games: ''
       }),
-      sex: new FormControl()
+      sex: ''
     });
+  }
+
 }
