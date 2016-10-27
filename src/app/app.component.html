@@ -6,6 +6,11 @@
       <div class="form-group">
         <label>請輸入名字</label>
         <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="請輸入名字">
+        <div *ngIf="form.controls.firstName.errors">
+          <span *ngIf="form.controls.firstName.valid">合格</span>
+          <span *ngIf="form.controls.firstName.errors.required">必填項目</span>
+          <span *ngIf="form.controls.firstName.errors.minlength">欄位長度不足</span>
+        </div>
       </div>
       <div class="form-group">
         <label>請輸入英文名</label>
@@ -14,6 +19,11 @@
       <div class="form-group">
         <label>請輸入Email</label>
         <input type="email" class="form-control" id="email" formControlName="email" placeholder="請輸入Email">
+        <div *ngIf="form.controls.email.errors">
+          <span *ngIf="form.controls.email.valid">合格</span>
+          <span *ngIf="form.controls.email.errors.required">必填項目</span>
+          <span *ngIf="form.controls.email.errors.pattern">請輸入正確的 email</span>
+        </div>
       </div>
       <div class="form-group">
         <label>請輸入電話</label>
