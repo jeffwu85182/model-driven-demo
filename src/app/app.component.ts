@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,15 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class AppComponent {
   form;
   emailPattern = '^[a-zA-Z0-9.!#$%&』*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$';
+
   constructor(private _fb: FormBuilder) {
-    this.form = this._fb.group({
+    this.form = this._fb.array([
+      this.buildGroup()
+    ]);
+  }
+
+  buildGroup(): FormGroup {
+    return this._fb.group({
       firstName: ['', [Validators.required, Validators.minLength(5)]],
       nickName: 'crazy',
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
@@ -25,6 +32,10 @@ export class AppComponent {
       }),
       sex: ''
     });
+  }
+
+  add() {
+    this.form.push(this.buildGroup());
   }
 
 }

@@ -1,15 +1,15 @@
 <!-- Model-Driven -->
 <div class="container">
   <form [formGroup]="form">
-    <div class="profile">
+    <div class="profile" *ngFor="let profile of form.controls; let i=index" [formGroupName]="i">
       <h2>基本資料</h2>
       <div class="form-group">
         <label>請輸入名字</label>
         <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="請輸入名字">
-        <div *ngIf="form.controls.firstName.errors">
-          <span *ngIf="form.controls.firstName.valid">合格</span>
-          <span *ngIf="form.controls.firstName.errors.required">必填項目</span>
-          <span *ngIf="form.controls.firstName.errors.minlength">欄位長度不足</span>
+        <div *ngIf="profile.controls.firstName.errors">
+          <span *ngIf="profile.controls.firstName.valid">合格</span>
+          <span *ngIf="profile.controls.firstName.errors.required">必填項目</span>
+          <span *ngIf="profile.controls.firstName.errors.minlength">欄位長度不足</span>
         </div>
       </div>
       <div class="form-group">
@@ -19,10 +19,10 @@
       <div class="form-group">
         <label>請輸入Email</label>
         <input type="email" class="form-control" id="email" formControlName="email" placeholder="請輸入Email">
-        <div *ngIf="form.controls.email.errors">
-          <span *ngIf="form.controls.email.valid">合格</span>
-          <span *ngIf="form.controls.email.errors.required">必填項目</span>
-          <span *ngIf="form.controls.email.errors.pattern">請輸入正確的 email</span>
+        <div *ngIf="profile.controls.email.errors">
+          <span *ngIf="profile.controls.email.valid">合格</span>
+          <span *ngIf="profile.controls.email.errors.required">必填項目</span>
+          <span *ngIf="profile.controls.email.errors.pattern">請輸入正確的 email</span>
         </div>
       </div>
       <div class="form-group">
@@ -61,7 +61,7 @@
         </label>
       </div>
     </div>
-    <button type="submit" class="btn btn-default">下一位</button>
+    <button type="button" class="btn btn-default" (click)="add()">下一位</button>
   </form>
 </div>
 
