@@ -1,8 +1,9 @@
 <!-- Model-Driven -->
 <div class="container">
   <form [formGroup]="form">
-    <div class="profile" *ngFor="let profile of form.controls; let i=index" [formGroupName]="i">
-      <h2>基本資料</h2>
+    <div formArrayName="formAr">
+    <div class="profile" *ngFor="let profile of form.controls.formAr.controls; let i=index" [formGroupName]="i">
+      <h2>基本資料</h2> <button (click)="remove(i)">X</button>
       <div class="form-group">
         <label>請輸入名字</label>
         <input type="text" class="form-control" id="firstName" formControlName="firstName" placeholder="請輸入名字">
@@ -62,6 +63,7 @@
       </div>
     </div>
     <button type="button" class="btn btn-default" (click)="add()">下一位</button>
+    </div>
   </form>
 </div>
 
