@@ -1,4 +1,5 @@
 <!-- Model-Driven -->
+<button type="button" (click)="disableInput()">toggle input</button>
 <div class="container">
   <form [formGroup]="form">
     <div formArrayName="formAr">
@@ -62,11 +63,12 @@
         </label>
       </div>
     </div>
-    <button type="button" class="btn btn-default" (click)="add()">下一位</button>
+    <button type="button" class="btn btn-default" disabled="" (click)="add()">下一位</button>
     </div>
   </form>
 </div>
 
 <pre>
   {{ form.value | json }}
+  {{ form.valid | json }}
 </pre>
