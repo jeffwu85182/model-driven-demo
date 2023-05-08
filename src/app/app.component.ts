@@ -1,49 +1,66 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  Validators,
+  FormGroup,
+  FormArray,
+  FormControl,
+} from '@angular/forms';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   form: FormGroup;
-  emailPattern = '^[a-zA-Z0-9.!#$%&』*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$';
+  emailPattern =
+    '^[a-zA-Z0-9.!#$%&』*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$';
 
-  constructor(private _fb: FormBuilder) {
-    this.form = this._fb.group({
-      formAr: this._fb.array([
-        this.buildGroup()
-      ])
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      profiles: this.fb.array([this.buildGroup()]),
     });
   }
 
+  get formAr(): FormArray {
+    return this.form.get('profiles') as FormArray;
+  }
+
   buildGroup(): FormGroup {
-    return this._fb.group({
-      firstName: '',
-      nickName: 'crazy',
-      email: '',
-      phone: '0912345678',
+    return this.fb.group({
+      id: uuidv4(),
+      firstName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+      ]),
+      nickName: '',
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this.emailPattern),
+      ]),
+      phone: '',
       birthday: '',
-      interest: this._fb.group({
+      interest: this.fb.group({
         movie: '',
         music: '',
         technology: '',
         sports: '',
-        games: ''
+        games: '',
       }),
-      sex: ''
+      sex: '',
     });
   }
 
   add() {
-    const control = <FormArray>this.form.controls['formAr'];
+    const control = <FormArray>this.form.controls['profiles'];
     control.push(this.buildGroup());
   }
 
   remove(i: number) {
     // remove address from the list
-    const control = <FormArray>this.form.controls['formAr'];
+    const control = <FormArray>this.form.controls['profiles'];
     control.removeAt(i);
   }
 }
