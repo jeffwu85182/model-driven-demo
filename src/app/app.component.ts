@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  Validators,
-  FormGroup,
   FormArray,
+  FormBuilder,
   FormControl,
+  FormGroup,
+  Validators,
 } from '@angular/forms';
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -13,7 +14,24 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  data = [
+    {
+      id: '1',
+      firstName: 'John',
+      nickName: 'John',
+      email: 'test@qqqq',
+      phone: '123456789',
+      birthday: '2020-01-01',
+      interest: {
+        movie: false,
+        music: false,
+        technology: false,
+        sports: false,
+        games: false,
+      },
+    },
+  ];
   form: FormGroup;
   emailPattern =
     '^[a-zA-Z0-9.!#$%&』*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$';
@@ -21,6 +39,12 @@ export class AppComponent {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       profiles: this.fb.array([this.buildGroup()]),
+    });
+  }
+
+  ngOnInit() {
+    this.form.patchValue({
+      profiles: this.data,
     });
   }
 
